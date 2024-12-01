@@ -1,0 +1,252 @@
+<!doctype html>
+<html>
+  <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>  
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/event.css"><!--正确引入css方式-->
+    <script src="js/event.js" defer></script>
+    <title>Movie List</title>  
+  </head>
+  <body>
+    <header class="p-3" style="background-color: lightblue; color: #333333; text-align: center;">
+      <h1>Cinema Ticket Sales System</h1>
+    </header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <!-- Container wrapper -->
+      <div class="container-fluid">
+        <!-- Toggle button -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarScroll"
+          aria-controls="navbarScroll"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-center" id="navbarScroll">
+          <ul class="navbar-nav mb-2 mb-lg-0">
+            <li class="nav-item px-2">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item px-2">
+              <a class="nav-link" href="profile.html">User profile</a>
+            </li>
+            <li class="nav-item px-2">
+              <a class="nav-link active fw-bold" style="color: lightblue;" aria-current="page" href="event.html">Available Movies</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <main>
+      <div class="container text-center">
+        <!-- 搜索功能+自动搜补全 -->
+         <br>
+        <div class="container my-4">
+          <form id="search-form" class="mb-4">
+            <div class="row g-3 align-items-center">
+              <!-- 实时推荐输入框 -->
+              <div class="col-md-2 position-relative">
+                <input type="text" id="search-bar" class="form-control" placeholder="Search by title or keyword...">
+                <div id="autocomplete-suggestions" class="list-group position-absolute w-100" style="z-index: 1000; display: none;"></div>
+              </div>
+              <!-- 日期范围 -->
+              <div class="col-md-2">
+                <input type="date" id="search-date-start" class="form-control" placeholder="Start date">
+              </div>
+              <!-- 场地过滤 -->
+              <div class="col-md-2">
+                <input type="text" id="search-venue" class="form-control" placeholder="Search by venue">
+              </div>
+              <!-- 标签过滤 -->
+              <div class="col-md-2">
+                <input type="text" id="search-tag" class="form-control" placeholder="Search by tags">
+              </div>
+              <!-- 提交按钮 -->
+              <div class="col-md-2">
+                <button type="button" class="btn btn-primary" id="filter-button">Filter</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        
+        <!--设置电影的出现-->
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 text-center card-deck d-flex" id="event-menu">
+          <!-- A Clockwork Orange -->
+          <div class="col card m-auto d-flex mt-2 mb-2" style="width: 22rem; height: auto;">
+            <img src="assets/A Clockwork Orange.webp" class="card-img-top mx-auto" alt="A Clockwork Orange" style="max-height: 300px; object-fit: cover;" />
+            <div class="card-body" style="line-height: 1.5;">
+              <h5 class="card-title fw-bolder mb-3">A Clockwork Orange</h5>
+              <p class="card-text mb-2">Show time: 20/12/2024 18:30-20:30</p>
+              <p class="card-text mb-2">Location: Cinema1</p>
+              <p class="card-text mb-2">$100/$150</p>
+              <div class="mb-2">
+                <span class="badge bg-primary">Thriller</span>
+                <span class="badge bg-secondary">Drama</span>
+              </div>
+              <!--<a class="btn btn-success d-block mx-auto" href="book.html" style="width: 50%;">Buy Ticket</a>-->
+              
+              <a class="btn btn-success buy-ticket-btn d-block mx-auto"
+                data-movie="A Clockwork Orange"
+               
+                data-time="2024-12-20 18:30-20:30"
+                data-location="Cinema1"
+                data-price-normal="100"
+                data-price-premium="150"
+                href="book.html"
+                style="width: 50%;">Buy Ticket</a>  
+            </div>
+          </div>
+    
+          <!-- Batman -->
+          <div class="col card m-auto d-flex mt-2 mb-2" style="width: 22rem; height: auto;">
+            <img src="assets/Batman.webp" class="card-img-top mx-auto" alt="Batman" style="max-height: 300px; object-fit: cover;" />
+            <div class="card-body" style="line-height: 1.5;">
+              <h5 class="card-title fw-bolder mb-3">Batman</h5>
+              <p class="card-text mb-2">Show time: 21/12/2024 16:30-19:30</p>
+              <p class="card-text mb-2">Location: Cinema2</p>
+              <p class="card-text mb-2">$100/$150</p>
+              <div class="mb-2">
+                <span class="badge bg-primary">Action</span>
+                <span class="badge bg-warning text-dark">Adventure</span>
+              </div>
+              <a class="btn btn-success buy-ticket-btn d-block mx-auto"
+                data-movie="Batman"
+                
+                data-time="2024-12-21 16:30-19:30"
+                data-location="Cinema2"
+                data-price-normal="100"
+                data-price-premium="150"
+                href="book.html"
+                style="width: 50%;">Buy Ticket</a>
+            </div>
+          </div>
+    
+          <!-- The GodFather -->
+          <div class="col card m-auto d-flex mt-2 mb-2" style="width: 22rem; height: auto;">
+            <img src="assets/The GodFather.webp" class="card-img-top mx-auto" alt="The GodFather" style="max-height: 300px; object-fit: cover;" />
+            <div class="card-body" style="line-height: 1.5;">
+              <h5 class="card-title fw-bolder mb-3">The GodFather</h5>
+              <p class="card-text mb-2">Show time: 21/12/2024 16:30-19:30</p>
+              <p class="card-text mb-2">Location: Cinema3</p>
+              <p class="card-text mb-2">$100/$150</p>
+              <div class="mb-2">
+                <span class="badge bg-dark">Crime</span>
+                <span class="badge bg-secondary">Drama</span>
+              </div>
+              <a class="btn btn-success buy-ticket-btn d-block mx-auto"
+              data-movie="The GodFather"
+              data-time="2024-12-21 16:30-19:30"
+              data-location="Cinema3"
+              data-price-normal="100"
+              data-price-premium="150"
+              href="book.html"
+              style="width: 50%;">Buy Ticket</a>
+            </div>
+          </div>
+    
+          <!-- After Hours -->
+          <div class="col card m-auto d-flex mt-2 mb-2" style="width: 22rem; height: auto;">
+            <img src="assets/After Hours.webp" class="card-img-top mx-auto" alt="After Hours" style="max-height: 300px; object-fit: cover;" />
+            <div class="card-body" style="line-height: 1.5;">
+              <h5 class="card-title fw-bolder mb-3">After Hours</h5>
+              <p class="card-text mb-2">Show time: 24/12/2024 18:30-21:30</p>
+              <p class="card-text mb-2">Location: Cinema2</p>
+              <p class="card-text mb-2">$150/$200</p>
+              <div class="mb-2">
+                <span class="badge bg-info text-dark">Comedy</span>
+                <span class="badge bg-primary">Thriller</span>
+              </div>
+              <a class="btn btn-success buy-ticket-btn d-block mx-auto"
+              data-movie="After Hours"              
+              data-time="2024-12-24 18:30-21:30"
+              data-location="Cinema2"
+              data-price-normal="150"
+              data-price-premium="200"
+              href="book.html"
+              style="width: 50%;">Buy Ticket</a>            
+            </div>
+          </div>
+
+          <!--Lord of War-->
+          <div class="col card m-auto d-flex mt-2 mb-2" style="width: 22rem; height: auto;">
+            <img src="assets/Lord of War.webp" class="card-img-top mx-auto" alt="Lord of War" style="max-height: 300px; object-fit: cover;" />
+            <div class="card-body" style="line-height: 1.5;">
+              <h5 class="card-title fw-bolder mb-3">Lord of War</h5>
+              <p class="card-text mb-2">Show time: 24/12/2024 18:30-20:30</p>
+              <p class="card-text mb-2">Location: Cinema3</p>
+              <p class="card-text mb-2">$150/$200</p>
+              <div class="mb-2">
+                  <span class="badge bg-dark">Crime</span>
+                  <span class="badge bg-secondary">Drama</span>                
+              </div>
+              <a class="btn btn-success buy-ticket-btn d-block mx-auto"
+              data-movie="Lord of War"             
+              data-time="2024-12-24 18:30-20:30"
+              data-location="Cinema3"
+              data-price-normal="150"
+              data-price-premium="200"
+              href="book.html"
+              style="width: 50%;">Buy Ticket</a>            
+            </div>
+          </div>
+    
+          <!-- Alien -->
+          <div class="col card m-auto d-flex mt-2 mb-2" style="width: 22rem; height: auto;">
+            <img src="assets/Alien.webp" class="card-img-top mx-auto" alt="Alien" style="max-height: 300px; object-fit: cover;" />
+            <div class="card-body" style="line-height: 1.5;">
+              <h5 class="card-title fw-bolder mb-3">Alien</h5>
+              <p class="card-text mb-2">Show time: 26/12/2024 18:30-20:30</p>
+              <p class="card-text mb-2">Location: Cinema1</p>
+              <p class="card-text mb-2">$150/$200</p>
+              <div class="mb-2">
+                <span class="badge bg-danger">Sci-Fi</span>
+                <span class="badge bg-dark">Horror</span>
+              </div>
+              <a class="btn btn-success buy-ticket-btn d-block mx-auto"
+              data-movie="Alien"            
+              data-time="2024-12-26 18:30-20:30"
+              data-location="Cinema1"
+              data-price-normal="150"
+              data-price-premium="200"
+              href="book.html"
+              style="width: 50%;">Buy Ticket</a>            
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </main>
+    <br>
+    <br>
+    <br>
+    <br>
+    <footer class="p-3" style="background-color: lightblue; color: #333333; text-align: center; position: fixed; bottom: 0; width: 100%;">
+       <div>Enjoy Your Movie!</div>
+      <div id="datetime"></div>
+    </footer>
+  </body>
+  <script>
+    // 格式化系统日期和时间
+    function updateDateTime() {
+        const now = new Date();
+        const date = now.toLocaleDateString('en-US');
+        const time = now.toLocaleTimeString('en-US', {
+          hour: 'numeric',
+          minute: 'numeric',
+          second: 'numeric',
+          hour12: true,
+        });
+
+        document.getElementById('datetime').textContent = `${date}, ${time}`;
+      }
+
+      // 页面加载时立即更新日期和时间，并每秒刷新一次
+      updateDateTime();
+      setInterval(updateDateTime, 1000);
+  </script>
+</html>

@@ -1,0 +1,88 @@
+[
+  {
+    "name": "A Clockwork Orange",
+    "location": "cinema1",
+    "date": "2024-12-20",
+    "time": "18:30-20:30",
+    "prices": {
+      "normal": 100,
+      "premium": 150
+    },
+    "tags": [
+      "Thriller",
+      "Drama"
+    ],
+    "description": "undefined"
+  },
+  {
+    "name": "Batman",
+    "location": "cinema2",
+    "date": "2024-12-21",
+    "time": "16:30-19:30",
+    "prices": {
+      "normal": 100,
+      "premium": 150
+    },
+    "tags": [
+      "Action",
+      "Adventure"
+    ]
+  },
+  {
+    "name": "The GodFather",
+    "location": "cinema3",
+    "date": "2024-12-21",
+    "time": "16:30-19:30",
+    "prices": {
+      "normal": 100,
+      "premium": 150
+    },
+    "tags": [
+      "Crime",
+      "Drama"
+    ]
+  },
+  {
+    "name": "After Hours",
+    "location": "cinema2",
+    "date": "2024-12-24",
+    "time": "18:30-21:30",
+    "prices": {
+      "normal": 150,
+      "premium": 200
+    },
+    "tags": [
+      "Comedy",
+      "Thriller"
+    ]
+  },
+  {
+    "name": "Lord of War",
+    "location": "cinema3",
+    "date": "2024-12-24",
+    "time": "18:30-20:30",
+    "prices": {
+      "normal": 150,
+      "premium": 200
+    },
+    "tags": [
+      "Crime",
+      "Drama",
+      "War"
+    ]
+  },
+  {
+    "name": "Alien",
+    "location": "cinema1",
+    "date": "2024-12-26",
+    "time": "18:30-20:30",
+    "prices": {
+      "normal": 150,
+      "premium": 200
+    },
+    "tags": [
+      "Sci-Fi",
+      "Horror"
+    ]
+  }
+]
