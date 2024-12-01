@@ -11,7 +11,7 @@
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
       crossorigin="anonymous"></script>
     <title>Cinema Ticket Sales System</title>
-    <script src="js/payment.js"></script>
+    <script src="js/pay.js"></script>
     <script></script>
     <style>
       .error {
@@ -41,7 +41,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <!-- Container wrapper -->
       <div class="container-fluid">
-        
+        <!-- Toggle button -->
         <button
           class="navbar-toggler"
           type="button"
@@ -71,24 +71,24 @@
     <main>
       <div class="container py-4">
         <div class="row mb-3" id="event">
-          
-          <h3>Information Confirmation</h3>
-          <p id="event-confirm"></p>
-          <p id="date-confirm"></p>
-          <p id="location-confirm"></p>
+          <!-- Display event details here -->
+          <h3>Event Confirmation</h3>
+          <p id="event-confirm">Event Name: Queen</p>
+          <p id="date-confirm">Date: 10/12 18:30-20:30</p>
+          <p id="location-confirm">Location: Tsuen Wan Town Hall</p>
         </div>
         <div class="row mb-3" id="seat">
           <h3>Seat Selection</h3>
-          <p id="selectedSeat"></p>
+          <p id="selectedSeat">Seat: A1</p>
         </div>
 
         <div class="row mb-3">
           <h3>Total Price</h3>
-          <p id="total-price"></p>
+          <p>$300</p>
         </div>
 
         <div class="row mb-3" id="payment">
-          <h3>Payment Details</h3>
+          <h3>Payment Details (DO NOT input real card number!)</h3>
           <form method="POST">
             <div class="form-check mt-2 mb-2">
               <input class="form-check-input" type="radio" name="type" id="type1" value="type1" checked />
@@ -127,6 +127,26 @@
     </main>
     <footer class="p-3" style="background-color: lightblue; color: #333333; text-align: center; position: fixed; bottom: 0; width: 100%;">
        <div>Enjoy Your Movie!</div>
+      <div id="datetime"></div>
     </footer>
-  </body>  
+  </body>
+  <script>
+    // 格式化系统日期和时间
+    function updateDateTime() {
+        const now = new Date();
+        const date = now.toLocaleDateString('en-US');
+        const time = now.toLocaleTimeString('en-US', {
+          hour: 'numeric',
+          minute: 'numeric',
+          second: 'numeric',
+          hour12: true,
+        });
+
+        document.getElementById('datetime').textContent = `${date}, ${time}`;
+      }
+
+      // 页面加载时立即更新日期和时间，并每秒刷新一次
+      updateDateTime();
+      setInterval(updateDateTime, 1000);
+  </script>
 </html>

@@ -23,11 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const data = await response.json();
 
       if (data.status === 'success') {
-        // 存储登录token到sessionStorage
-        sessionStorage.setItem('isLoggedIn', 'true');
-        sessionStorage.setItem('username', data.user.username);
-        sessionStorage.setItem('role', data.user.role);
-        
         alert(`Logged as ${data.user.username} (${data.user.role})`);
         window.open('/index.html', '_self');
       } else if (data.message) {
