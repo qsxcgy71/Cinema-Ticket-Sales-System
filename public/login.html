@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Cinema Ticket Sales System</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"></script>
+    <script src="js/login.js"></script>
+    <style>
+      .container {
+        max-width: 500px;
+        margin: 0 auto;
+        padding-top: 100px;
+      }
+      .container h2 {
+        text-align: center;
+      }
+      .container label {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="p-3" style="background-color: lightblue; color: #333333; text-align: center;">
+      <h1>Cinema Ticket Sales System</h1>
+    </header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <!-- Container wrapper -->
+      <div class="container-fluid">
+        <!-- Toggle button -->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>             
+          <div class="collapse navbar-collapse justify-content-center" id="navbarScroll">
+            <ul class="navbar-nav mb-2 mb-lg-0">
+              <li class="nav-item px-2">
+                <a class="nav-link active fw-bold" style="color: lightblue;" href="index.html" >Home</a>
+              </li-->
+              <li class="nav-item px-2">
+                <a class="nav-link" href="book.html">Ticket Booking</a>
+              </li>
+              <li class="nav-item px-2">
+                <a class="nav-link" href="event.html">Available Movies</a>   
+              </li>                    
+            </ul>                   
+          </div>                  
+      </div>                
+    </nav>
+    <main>
+      <div class="container">
+        <header class="fs-2 fw-bold mb-2">Login</header>
+        <form action="/auth/login" method="POST">
+          <div class="mb-2">
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" class="form-control" />
+          </div>
+          <div class="mb-2 form-check">
+            <input type="checkbox" class="form-check-input" id="remember-user-id">
+            <label class="form-check-label" for="remember-user-id">Remember User ID</label>
+          </div>
+          <div class="mb-2">
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" class="form-control" />
+          </div>
+          <div class="mb-2">
+            <a href="forgetpassword.html">Forgot Password?</a>
+          </div>
+          <button type="button" class="btn btn-success" id="login-button">Login</button>
+          <button type="button" class="btn btn-primary" onclick="window.location.href='register.html';">
+            Register
+          </button>
+        </form>
+      </div>
+    </main>
+    <br />
+    <br />
+    <br />
+    <footer class="p-3" style="background-color: lightblue; color: #333333; text-align: center; position: fixed; bottom: 0; width: 100%;">
+      <div>Enjoy Your Movie!</div>
+     <div id="datetime"></div>
+   </footer>
+  </body>
+  <script>
+    // 格式化系统日期和时间
+    function updateDateTime() {
+        const now = new Date();
+        const date = now.toLocaleDateString('en-US');
+        const time = now.toLocaleTimeString('en-US', {
+          hour: 'numeric',
+          minute: 'numeric',
+          second: 'numeric',
+          hour12: true,
+        });
+
+        document.getElementById('datetime').textContent = `${date}, ${time}`;
+      }
+
+      // 页面加载时立即更新日期和时间，并每秒刷新一次
+      updateDateTime();
+      setInterval(updateDateTime, 1000);
+  </script>
+</html>

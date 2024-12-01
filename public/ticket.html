@@ -1,0 +1,216 @@
+<!--
+<!doctype html>
+<html>
+  <head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"></script>
+    <title>Cinema Ticket Sales System - Ticket</title>
+    <script src="js/ticket.js"></script>
+    <style>
+      .row {
+        max-width: 500px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      #ticket-info {
+        max-width: 1000px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      .ticket-details {
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="p-3" style="background-color: lightblue; color: #333333; text-align: center;">
+      <h1>Cinema Ticket Sales System</h1>
+    </header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarScroll"
+          aria-controls="navbarScroll"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarScroll">
+          <ul class="navbar-nav mb-2 mb-lg-0">
+            <li class="nav-item px-2">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item px-2">
+              <a class="nav-link active fw-bold" style="color: lightblue;" href="ticket.html">Ticket</a>
+            </li>
+            <li class="nav-item px-2">
+              <a class="nav-link" href="event.html">Available Movies</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <main>
+      <div class="container py-4">
+        <div class="row mb-3" id="ticket-info">
+          <h3>Your Ticket</h3>
+          <p id="event-info"></p>
+          <p id="selectedSeat"></p>
+          <p id="total-price"></p>
+        </div>
+        <div class="row mb-3">
+          <h3>Want Popcorn & Soda?</h3>
+          <button class="btn btn-warning" id="popcorn">Buy Popcorn</button>
+          <button class="btn btn-warning" id="soda">Buy Soda</button>
+        </div>
+        <div class="row mb-3">
+          <h3>QR Code for Entry</h3>
+          <img id="qr-code" src="" alt="QR Code" />
+        </div>
+        <button class="btn btn-primary" id="finish-button">Finish</button>
+      </div>
+      <br>
+      <br>
+      <br>
+      <br>
+    </main>
+    
+    <footer class="p-3" style="background-color: lightblue; color: #333333; text-align: center; position: fixed; bottom: 0; width: 100%;">
+       <div>Enjoy Your Movie!</div>
+    </footer>
+  </body>
+</html>-->
+<<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cinema Ticket Sales System - Ticket</title>
+  <!-- 引入 Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+    crossorigin="anonymous">
+  <!-- 自定义样式 -->
+  <link rel="stylesheet" href="css/ticket.css">
+  <style>
+    /* 设置整个页面的背景图片 */
+    body {
+      background-image: url('assets/background.jpg'); /* 替换为您的背景图片路径 */
+      background-size: cover; /* 背景图片覆盖整个页面 */
+      background-repeat: no-repeat; /* 不重复背景图片 */
+      background-position: center; /* 背景图片居中 */
+      height: 100vh; /* 视口高度 */
+      margin: 0;
+      padding: 0;
+    }
+
+    /* 给模态框添加半透明背景 */
+    .modal-content {
+      background-color: rgba(255, 255, 255, 0.95); /* 半透明白色背景 */
+    }
+
+    /* 调整模态框标题和内容的颜色，以确保可读性 */
+    .modal-header, .modal-body, .modal-footer {
+      color: #333333;
+    }
+
+    /* 可选：调整文本阴影以增强可读性 */
+    .modal-title, .modal-body p, .modal-body h4 {
+      text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
+    }
+
+    /* 调整二维码图片大小 */
+    #qr-code {
+      width: 200px;
+      height: 200px;
+      display: block;
+      margin: 0 auto;
+    }
+     /* 额外的自定义样式（可选） */
+     .modal-body h4, .modal-body p {
+      text-align: center;
+    }
+
+    .modal-footer {
+      justify-content: center;
+    }
+
+    /* 调整按钮对齐 */
+    .btn-group {
+      display: flex;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <!-- 主内容区域 -->
+  <main>
+    <!-- 模态框触发器 -->
+    <button type="button" class="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#ticketModal" id="modalTrigger">
+      Open Ticket Modal
+    </button>
+
+    <!-- 模态框 -->
+    <div class="modal fade" id="ticketModal" tabindex="-1" aria-labelledby="ticketModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h2 class="modal-title w-100" id="ticketModalLabel">Your Ticket</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <!-- 票务信息 -->
+            <div id="ticket-info">
+              <h4 id="event-info"></h4>
+              <p id="selectedSeat"></p>
+              <p id="total-price"></p>
+            </div>
+            <!-- 购买爆米花和可乐 -->
+            <div class="mt-4">
+              <h4>Want Popcorn & Soda?</h4>
+              <div class="btn-group">
+                <button class="btn btn-warning me-2" id="popcorn">Buy Popcorn</button>
+                <button class="btn btn-warning" id="soda">Buy Soda</button>
+              </div>
+            </div>
+            <!-- 二维码 -->
+            <div class="mt-4">
+              <h4>QR Code for Entry</h4>
+              <img id="qr-code" src="" alt="QR Code" />
+              <button class="btn btn-secondary mt-2" id="download-qr">Download QR Code</button>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" id="finish-button">Finish</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- 引入 jQuery 和 Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-3gJwYp8p8C+IfhXYSxBqUBmw6LBCtKg+eNpS+3n3Yp0="
+    crossorigin="anonymous"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <!-- 引入自定义的 ticket.js -->
+  <script src="js/ticket.js"></script>
+</body>
+</html>
+

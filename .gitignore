@@ -1,0 +1,17 @@
+# 忽略 node_modules 文件夹
+node_modules/
+
+# 忽略环境变量文件（通常不上传敏感信息）
+.env
+
+# 忽略日志文件
+*.log
+
+# 忽略操作系统和编辑器产生的临时文件
+.DS_Store
+Thumbs.db
+.vscode/
+
+# 忽略依赖的打包文件（如果有）
+dist/
+build/
