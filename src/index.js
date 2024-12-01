@@ -3,7 +3,7 @@ import session from 'express-session';
 import route from './login.js';
 import mongostore from 'connect-mongo';
 import client from './dbclient.js';
-
+import path from 'path';
 const app = express();
 var port = 8080;
 
@@ -37,7 +37,7 @@ app.get('/', (req, res) => {
   }
 });
 
-app.use('/', express.static('static'));
+app.use('/', express.static(path.join(process.cwd(), '/static')));
 
 app.listen(port, () => {
   console.log(Date().toLocaleString('en-HK'));
